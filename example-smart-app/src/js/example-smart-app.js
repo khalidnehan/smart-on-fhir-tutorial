@@ -31,9 +31,17 @@
           var fname = '';
           var lname = '';
 
+          //if (typeof patient.name[0] !== 'undefined') {
+            //fname = patient.name[0].given.join(' ');
+            //lname = patient.name[0].family;
+         // }
+
           if (typeof patient.name[0] !== 'undefined') {
             fname = patient.name[0].given.join(' ');
-            lname = patient.name[0].family;
+            // Handle family as either string or array
+            lname = Array.isArray(patient.name[0].family)
+              ? patient.name[0].family.join(' ')
+              : patient.name[0].family;
           }
 
           var height = byCodes('8302-2');
